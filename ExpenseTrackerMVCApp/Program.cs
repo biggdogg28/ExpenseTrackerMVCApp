@@ -11,6 +11,7 @@ builder.Services.AddDbContext<ExpenseTrackerDataContext>(options => options.UseS
 
 builder.Services.AddTransient<ExpenseTrackerDataContext, ExpenseTrackerDataContext>();
 builder.Services.AddTransient<ExpenseCategoriesRepository, ExpenseCategoriesRepository>();
+builder.Services.AddTransient<IncomeTypesRepository, IncomeTypesRepository>();
 
 var app = builder.Build();
 
