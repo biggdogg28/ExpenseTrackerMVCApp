@@ -36,7 +36,7 @@ namespace ExpenseTrackerMVCApp.Controllers
 
         // POST: ExpenseCategoriesController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        
         public ActionResult Create(IFormCollection collection)
         {
             ExpenseCategoryModel expenseCategory = new ExpenseCategoryModel();
@@ -55,7 +55,7 @@ namespace ExpenseTrackerMVCApp.Controllers
 
         // POST: ExpenseCategoriesController/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        
         public ActionResult Edit(Guid id, IFormCollection collection)
         {
             ExpenseCategoryModel expenseCategory = new();
@@ -74,7 +74,7 @@ namespace ExpenseTrackerMVCApp.Controllers
 
         // POST: ExpenseCategoriesController/Delete/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        
         public ActionResult Delete(Guid id, IFormCollection collection)
         {
             _repository.DeleteExpenseCategoryById(id);

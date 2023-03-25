@@ -33,12 +33,12 @@ namespace ExpenseTrackerMVCApp.Repositories
 
         public void UpdateExpenseCategory(ExpenseCategoryModel model)
         {
-            ExpenseCategoryModel expenseCategory = GetExpenseCategoriesById(model.ExpenseCategoryID);
-            if (expenseCategory != null)
-            {
+            //ExpenseCategoryModel expenseCategory = GetExpenseCategoriesById(model.ExpenseCategoryID);
+            //if (expenseCategory != null)
+            //{
                 _context.ExpenseCategories.Update(model);
                 _context.SaveChanges();
-            }
+            //}
         }
 
         public void DeleteExpenseCategoryById(Guid id)
