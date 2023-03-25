@@ -6,7 +6,7 @@ namespace ExpenseTrackerMVCApp.Models
     {
         [Key]
         public Guid IdExpense { get; set; }
-        public Guid ExpenseTypeID { get; set; }
+        public Guid ExpenseCategoryID { get; set; }
         public int Amount { get; set; }
         public string Location { get; set; }
         public string Notes { get; set; }

@@ -9,9 +9,11 @@ namespace ExpenseTrackerMVCApp.Controllers
     public class ExpensesController : Controller
     {
         private readonly ExpensesRepository _repository;
-        public ExpensesController(ExpensesRepository repository)
+        private readonly ExpenseCategoriesRepository _categoryRepository;
+        public ExpensesController(ExpensesRepository repository, ExpenseCategoriesRepository categoryRepository)
         {
             _repository = repository;
+            _categoryRepository = categoryRepository;
         }
 
         // GET: ExpensesController
@@ -31,7 +33,11 @@ namespace ExpenseTrackerMVCApp.Controllers
         // GET: ExpensesController/Create
         public ActionResult Create()
         {
-            return View();
+            var expenseCategory = _categoryRepository.GetExpenseCategories();
+
+            ViewBag.data = expenseCategory;
+
+            return View("Create");
         }
 
         // POST: ExpensesController/Create
@@ -39,20 +45,18 @@ namespace ExpenseTrackerMVCApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            ExpenseModel expense = new ExpenseModel();
+            TryUpdateModelAsync(expense);
+            _repository.AddExpense(expense);
+
+            return RedirectToAction("Index");
         }
 
         // GET: ExpensesController/Edit/5
         public ActionResult Edit(Guid id)
         {
-            return View();
+            ExpenseModel expense = _repository.GetExpenseById(id);
+            return View("Index", expense);
         }
 
         // POST: ExpensesController/Edit/5
@@ -60,20 +64,18 @@ namespace ExpenseTrackerMVCApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Guid id, IFormCollection collection)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            ExpenseModel expense = new ExpenseModel();
+            TryUpdateModelAsync(expense);
+            _repository.AddExpense(expense);
+
+            return RedirectToAction("Index");
         }
 
         // GET: ExpensesController/Delete/5
         public ActionResult Delete(Guid id)
         {
-            return View();
+            ExpenseModel expense = _repository.GetExpenseById(id);
+            return View("Delete", expense);
         }
 
         // POST: ExpensesController/Delete/5
@@ -81,14 +83,8 @@ namespace ExpenseTrackerMVCApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(Guid id, IFormCollection collection)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            _repository.DeleteExpenseById(id);
+            return RedirectToAction("Index");
         }
     }
 }

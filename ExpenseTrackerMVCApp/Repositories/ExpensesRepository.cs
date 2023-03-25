@@ -20,13 +20,13 @@ namespace ExpenseTrackerMVCApp.Repositories
 
         public ExpenseModel GetExpenseById(Guid id)
         {
-            ExpenseModel expense = _context.Expenses.FirstOrDefault(x => x.ExpenseTypeID == id);
+            ExpenseModel expense = _context.Expenses.FirstOrDefault(x => x.ExpenseCategoryID == id);
             return expense;
         }
 
         public void AddExpense(ExpenseModel model)
         {
-            model.ExpenseTypeID = Guid.NewGuid();
+            model.IdExpense = Guid.NewGuid();
             _context.Expenses.Add(model);
             _context.SaveChanges();
         }
