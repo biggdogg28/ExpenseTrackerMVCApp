@@ -1,4 +1,6 @@
 ﻿using ExpenseTrackerMVCApp.DataContext;
+using ExpenseTrackerMVCApp.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ExpenseTrackerMVCApp.Repositories
 {
@@ -9,6 +11,45 @@ namespace ExpenseTrackerMVCApp.Repositories
         public ExpensesRepository(ExpenseTrackerDataContext context)
         {
             _context = context;
+        }
+
+        public DbSet<ExpenseModel> GetExpenses()
+        {
+            return _context.Expenses;
+        }
+
+        public ExpenseModel GetExpenseById(Guid id)
+        {
+            ExpenseModel expense = _context.Expenses.FirstOrDefault(x => x.ExpenseTypeID == id);
+            return expense;
+        }
+
+        public void AddExpense(ExpenseModel model)
+        {
+            model.ExpenseTypeID = Guid.NewGuid();
+            _context.Expenses.Add(model);
+            _context.SaveChanges();
+        }
+
+        public void UpdateExpense(ExpenseModel model)
+        {
+            //ExpenseCategoryModel expenseCategory = GetExpenseCategoriesById(model.ExpenseCategoryID);
+            //if (expenseCategory != null)
+            //{
+            _context.Expenses.Update(model);
+            _context.SaveChanges();
+            //}
+        }
+
+        public void DeleteExpenseById(Guid id)
+        {
+            ExpenseModel expense = GetExpenseById(id);
+            if (expense != null)
+            {
+                _context.Remove(expense);
+                _context.SaveChanges();
+            }
+
         }
     }
 }

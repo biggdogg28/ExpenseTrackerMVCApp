@@ -12,6 +12,5 @@ namespace ExpenseTrackerMVCApp.Models
         public string Notes { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedOn { get; set; }
-        public bool IsSaving { get; set; }
     }
 }
