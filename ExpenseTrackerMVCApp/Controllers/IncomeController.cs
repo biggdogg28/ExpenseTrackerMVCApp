@@ -8,9 +8,11 @@ namespace ExpenseTrackerMVCApp.Controllers
     public class IncomeController : Controller
     {
         public readonly IncomeRepository _repository;
-        public IncomeController(IncomeRepository repository)
+        public readonly IncomeTypesRepository _incomeTypeRepository;
+        public IncomeController(IncomeRepository repository, IncomeTypesRepository incomeTypeRepository)
         {
             _repository = repository;
+            _incomeTypeRepository= incomeTypeRepository;
         }
 
         // GET: IncomesController
@@ -30,6 +32,10 @@ namespace ExpenseTrackerMVCApp.Controllers
         // GET: IncomesController/Create
         public ActionResult Create()
         {
+            var incomeTypes = _incomeTypeRepository.GetIncomeTypes();
+
+            ViewBag.data = incomeTypes;
+
             return View("Create");
         }
 

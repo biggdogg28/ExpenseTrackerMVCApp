@@ -22,7 +22,7 @@
                 <label asp-for="ExpenseCategoryID" class="control-label">Select Expense Type</label>
                 @*<input asp-for="ExpenseTypeID" class="form-control" />
                 <span asp-validation-for="ExpenseTypeID" class="text-danger"></span>*@
-                @Html.DropDownList("ExpenseTypeID", new SelectList(ViewBag.data, "ExpenseCategoryID", "Name"))
+                @Html.DropDownList("ExpenseCategoryID", new SelectList(ViewBag.data, "ExpenseCategoryID", "Name"))
             </div>
             <div class="form-group">
                 <label asp-for="Amount" class="control-label"></label>

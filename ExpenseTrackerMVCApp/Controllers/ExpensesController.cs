@@ -56,7 +56,7 @@ namespace ExpenseTrackerMVCApp.Controllers
         public ActionResult Edit(Guid id)
         {
             ExpenseModel expense = _repository.GetExpenseById(id);
-            return View("Index", expense);
+            return View("Edit", expense);
         }
 
         // POST: ExpensesController/Edit/5
@@ -64,9 +64,9 @@ namespace ExpenseTrackerMVCApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Guid id, IFormCollection collection)
         {
-            ExpenseModel expense = new ExpenseModel();
+            ExpenseModel expense = _repository.GetExpenseById(id);
             TryUpdateModelAsync(expense);
-            _repository.AddExpense(expense);
+            _repository.UpdateExpense(expense);
 
             return RedirectToAction("Index");
         }

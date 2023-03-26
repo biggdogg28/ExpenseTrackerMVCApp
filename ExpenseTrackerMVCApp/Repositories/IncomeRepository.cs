@@ -15,19 +15,19 @@ namespace ExpenseTrackerMVCApp.Repositories
 
         public DbSet<IncomeModel> GetIncomes()
         {
-            return _context.Incomes;
+            return _context.Income;
         }
 
         public IncomeModel GetIncomeById(Guid id)
         {
-            IncomeModel income = _context.Incomes.FirstOrDefault(x => x.IncomeTypeID == id);
+            IncomeModel income = _context.Income.FirstOrDefault(x => x.IdIncome == id);
             return income;
         }
 
         public void AddIncome(IncomeModel model)
         {
-            model.IncomeTypeID = Guid.NewGuid();
-            _context.Incomes.Add(model);
+            model.IdIncome = Guid.NewGuid();
+            _context.Income.Add(model);
             _context.SaveChanges();
         }
 
@@ -36,7 +36,7 @@ namespace ExpenseTrackerMVCApp.Repositories
             //ExpenseCategoryModel expenseCategory = GetExpenseCategoriesById(model.ExpenseCategoryID);
             //if (expenseCategory != null)
             //{
-            _context.Incomes.Update(model);
+            _context.Income.Update(model);
             _context.SaveChanges();
             //}
         }

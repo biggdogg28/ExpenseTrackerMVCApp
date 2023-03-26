@@ -29,9 +29,10 @@
                 <span asp-validation-for="Amount" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="IncomeTypeID" class="control-label"></label>
-                <input asp-for="IncomeTypeID" class="form-control" />
-                <span asp-validation-for="IncomeTypeID" class="text-danger"></span>
+                <label asp-for="IncomeTypeID" class="control-label">Select Income Type</label>
+                @*<input asp-for="IncomeTypeID" class="form-control" />
+                <span asp-validation-for="IncomeTypeID" class="text-danger"></span>*@
+                @Html.DropDownList("IncomeTypeID", new SelectList(ViewBag.data, "IncomeTypeID", "Name"))
             </div>
             <div class="form-group">
                 <label asp-for="Notes" class="control-label"></label>

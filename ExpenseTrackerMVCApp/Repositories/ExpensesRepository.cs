@@ -20,7 +20,7 @@ namespace ExpenseTrackerMVCApp.Repositories
 
         public ExpenseModel GetExpenseById(Guid id)
         {
-            ExpenseModel expense = _context.Expenses.FirstOrDefault(x => x.ExpenseCategoryID == id);
+            ExpenseModel expense = _context.Expenses.FirstOrDefault(x => x.IdExpense == id);
             return expense;
         }
 
