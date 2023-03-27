@@ -8,7 +8,7 @@ namespace ExpenseTrackerMVCApp.Models
         public Guid IdExpense { get; set; }
         public Guid ExpenseCategoryID { get; set; }
         public int Amount { get; set; }
-        public string Location { get; set; }
+        public Guid IdLocation { get; set; }
         public string Notes { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedOn { get; set; }

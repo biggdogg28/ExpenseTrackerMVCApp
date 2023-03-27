@@ -30,9 +30,10 @@
                 <span asp-validation-for="Amount" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Location" class="control-label"></label>
-                <input asp-for="Location" class="form-control" />
-                <span asp-validation-for="Location" class="text-danger"></span>
+                <label asp-for="IdLocation" class="control-label"></label>
+                @*<input asp-for="IdLocation" class="form-control" />
+                <span asp-validation-for="IdLocation" class="text-danger"></span>*@
+                @Html.DropDownList("IdLocation", new SelectList(ViewBag.data, "IdLocation", "Name"))
             </div>
             <div class="form-group">
                 <label asp-for="Notes" class="control-label"></label>

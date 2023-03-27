@@ -10,10 +10,12 @@ namespace ExpenseTrackerMVCApp.Controllers
     {
         private readonly ExpensesRepository _repository;
         private readonly ExpenseCategoriesRepository _categoryRepository;
-        public ExpensesController(ExpensesRepository repository, ExpenseCategoriesRepository categoryRepository)
+        private readonly LocationsRepository _locationsRepository;
+        public ExpensesController(ExpensesRepository repository, ExpenseCategoriesRepository categoryRepository, LocationsRepository locationsRepository)
         {
             _repository = repository;
             _categoryRepository = categoryRepository;
+            _locationsRepository = locationsRepository;
         }
 
         // GET: ExpensesController
@@ -34,8 +36,10 @@ namespace ExpenseTrackerMVCApp.Controllers
         public ActionResult Create()
         {
             var expenseCategory = _categoryRepository.GetExpenseCategories();
+            var location = _locationsRepository.GetLocations();
 
             ViewBag.data = expenseCategory;
+            ViewBag.data = location;
 
             return View("Create");
         }
