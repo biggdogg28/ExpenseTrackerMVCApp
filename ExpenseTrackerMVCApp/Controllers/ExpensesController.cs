@@ -38,7 +38,7 @@ namespace ExpenseTrackerMVCApp.Controllers
             List<ExpenseCategoryModel> expenseCategory = _expenseCategoryRepository.GetExpenseCategories().ToList();
             List<LocationModel> location = _locationsRepository.GetLocations().ToList();
 
-            ViewBag.data = expenseCategory;
+            ViewBag.dataE = expenseCategory;
             ViewBag.data = location;
 
             return View("Create");
@@ -59,6 +59,12 @@ namespace ExpenseTrackerMVCApp.Controllers
         public ActionResult Edit(Guid id)
         {
             ExpenseModel expense = _repository.GetExpenseById(id);
+            List<ExpenseCategoryModel> expenseCategory = _expenseCategoryRepository.GetExpenseCategories().ToList();
+            List<LocationModel> location = _locationsRepository.GetLocations().ToList();
+
+            ViewBag.dataE = expenseCategory;
+            ViewBag.data = location;
+
             return View("Edit", expense);
         }
 
