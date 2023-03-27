@@ -9,12 +9,12 @@ namespace ExpenseTrackerMVCApp.Controllers
     public class ExpensesController : Controller
     {
         private readonly ExpensesRepository _repository;
-        private readonly ExpenseCategoriesRepository _categoryRepository;
+        private readonly ExpenseCategoriesRepository _expenseCategoryRepository;
         private readonly LocationsRepository _locationsRepository;
-        public ExpensesController(ExpensesRepository repository, ExpenseCategoriesRepository categoryRepository, LocationsRepository locationsRepository)
+        public ExpensesController(ExpensesRepository repository, ExpenseCategoriesRepository expenseCategoryRepository, LocationsRepository locationsRepository)
         {
             _repository = repository;
-            _categoryRepository = categoryRepository;
+            _expenseCategoryRepository = expenseCategoryRepository;
             _locationsRepository = locationsRepository;
         }
 
@@ -35,8 +35,8 @@ namespace ExpenseTrackerMVCApp.Controllers
         // GET: ExpensesController/Create
         public ActionResult Create()
         {
-            var expenseCategory = _categoryRepository.GetExpenseCategories();
-            var location = _locationsRepository.GetLocations();
+            List<ExpenseCategoryModel> expenseCategory = _expenseCategoryRepository.GetExpenseCategories().ToList();
+            List<LocationModel> location = _locationsRepository.GetLocations().ToList();
 
             ViewBag.data = expenseCategory;
             ViewBag.data = location;
@@ -46,7 +46,6 @@ namespace ExpenseTrackerMVCApp.Controllers
 
         // POST: ExpensesController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
         {
             ExpenseModel expense = new ExpenseModel();
@@ -65,7 +64,6 @@ namespace ExpenseTrackerMVCApp.Controllers
 
         // POST: ExpensesController/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Edit(Guid id, IFormCollection collection)
         {
             ExpenseModel expense = _repository.GetExpenseById(id);
@@ -84,7 +82,6 @@ namespace ExpenseTrackerMVCApp.Controllers
 
         // POST: ExpensesController/Delete/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Delete(Guid id, IFormCollection collection)
         {
             _repository.DeleteExpenseById(id);

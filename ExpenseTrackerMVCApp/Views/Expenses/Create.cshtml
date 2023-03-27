@@ -13,15 +13,15 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @*<div class="form-group">
+            <div class="form-group">
                 <label asp-for="IdExpense" class="control-label"></label>
                 <input asp-for="IdExpense" class="form-control" />
                 <span asp-validation-for="IdExpense" class="text-danger"></span>
-            </div>*@
+            </div>
             <div class="form-group">
-                <label asp-for="ExpenseCategoryID" class="control-label">Select Expense Type</label>
-                @*<input asp-for="ExpenseTypeID" class="form-control" />
-                <span asp-validation-for="ExpenseTypeID" class="text-danger"></span>*@
+                <label asp-for="ExpenseCategoryID" class="control-label"></label>
+                @*<input asp-for="ExpenseCategoryID" class="form-control" />
+                <span asp-validation-for="ExpenseCategoryID" class="text-danger"></span>*@
                 @Html.DropDownList("ExpenseCategoryID", new SelectList(ViewBag.data, "ExpenseCategoryID", "Name"))
             </div>
             <div class="form-group">
