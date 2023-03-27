@@ -15,19 +15,19 @@ namespace ExpenseTrackerMVCApp.Repositories
 
         public DbSet<LocationModel> GetLocations()
         {
-            return _context.Locations;
+            return _context.Location;
         }
 
         public LocationModel GetLocationById(Guid id)
         {
-            LocationModel location = _context.Locations.FirstOrDefault(x => x.IdLocation == id);
+            LocationModel location = _context.Location.FirstOrDefault(x => x.IdLocation == id);
             return location;
         }
 
         public void AddLocation(LocationModel model)
         {
             model.IdLocation = Guid.NewGuid();
-            _context.Locations.Add(model);
+            _context.Location.Add(model);
             _context.SaveChanges();
         }
 
@@ -36,7 +36,7 @@ namespace ExpenseTrackerMVCApp.Repositories
             //ExpenseCategoryModel expenseCategory = GetExpenseCategoriesById(model.ExpenseCategoryID);
             //if (expenseCategory != null)
             //{
-            _context.Locations.Update(model);
+            _context.Location.Update(model);
             _context.SaveChanges();
             //}
         }
