@@ -16,3 +16,43 @@ html {
 body {
   margin-bottom: 60px;
 }
+.container-fluid {
+    background-color: rebeccapurple;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.display-4 {
+    border: 5px solid #808080;
+    border-radius: 25px;
+    padding: inherit;
+}
+
+.footer {
+    background-color: lightblue;
+}
+
+.nav-item {
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.navbar-brand {
+    border: 3px solid;
+    border-radius: 5px;
+    padding: 4px;
+}
+
+#privacy-policy-text {
+    font-style: italic;
+}
+#add-expense-home {
+    border-radius: 5px;
+    border: 3px solid #ff0000;
+    float: left
+}
+#add-income-home {
+    border-radius: 5px;
+    border: 3px solid #0094ff;
+    float: right
+}
