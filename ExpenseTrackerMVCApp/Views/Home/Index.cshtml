@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<ExpenseTrackerMVCApp.Models.TotalModel>
+
+@{
     ViewData["Title"] = "Overview";
 }
 
@@ -16,10 +18,25 @@
             <a class="nav-link text-dark" asp-area="" asp-controller="Income" asp-action="Index">Add Income</a>
         </button>
     </span>
- </div>
- <div id="expenses-table">
-       
- </div>
-<div id="income-table">
-
 </div>
+ <div id="Total-table">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                            @Html.DisplayNameFor(model => model.TotalExpenses)
+                </th>
+                <th>
+                            @Html.DisplayNameFor(model => model.TotalIncome)
+                </th>
+                <th>
+                            @Html.DisplayNameFor(model => model.CreatedDate)
+                </th>
+                <th>
+                            @Html.DisplayNameFor(model => model.UpdatedOn)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+ </div>

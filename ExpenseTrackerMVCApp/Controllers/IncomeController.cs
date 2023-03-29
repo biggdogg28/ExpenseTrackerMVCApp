@@ -47,6 +47,7 @@ namespace ExpenseTrackerMVCApp.Controllers
             IncomeModel income = new IncomeModel();
             TryUpdateModelAsync(income);
             _repository.AddIncome(income);
+            //_totlsRepo.UpdateTotals();
             return RedirectToAction("Index");
             
         }
@@ -66,7 +67,7 @@ namespace ExpenseTrackerMVCApp.Controllers
             IncomeModel income = new IncomeModel();
             TryUpdateModelAsync(income);
             _repository.UpdateIncome(income);
-
+            //_totlsRepo.UpdateTotals();
             return RedirectToAction("Index");
         }
 
