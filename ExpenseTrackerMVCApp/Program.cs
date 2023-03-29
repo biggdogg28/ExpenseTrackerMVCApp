@@ -15,7 +15,6 @@ builder.Services.AddTransient<IncomeTypesRepository, IncomeTypesRepository>();
 builder.Services.AddTransient<IncomeRepository, IncomeRepository>();
 builder.Services.AddTransient<ExpensesRepository, ExpensesRepository>();
 builder.Services.AddTransient<LocationsRepository, LocationsRepository>();
-builder.Services.AddTransient<TotalsRepository, TotalsRepository>();
 
 var app = builder.Build();
 

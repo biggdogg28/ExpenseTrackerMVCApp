@@ -12,6 +12,5 @@ namespace ExpenseTrackerMVCApp.DataContext
         public DbSet<IncomeModel> Income { get; set; }
         public DbSet<IncomeTypeModel> IncomeTypes { get; set; }
         public DbSet<LocationModel> Location { get; set; }
-        public DbSet<TotalModel> Total { get; set; }
     }
 }
