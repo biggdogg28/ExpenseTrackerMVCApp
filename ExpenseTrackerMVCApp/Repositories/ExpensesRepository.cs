@@ -22,7 +22,6 @@ namespace ExpenseTrackerMVCApp.Repositories
         {
             ExpenseModel expense = _context.Expenses.FirstOrDefault(x => x.IdExpense == id);
             return expense;
-            
         }
 
         public void AddExpense(ExpenseModel model)
