@@ -27,6 +27,8 @@ namespace ExpenseTrackerMVCApp.Repositories
         public void AddIncome(IncomeModel model)
         {
             model.IdIncome = Guid.NewGuid();
+            model.CreatedDate = DateTime.Now;
+            model.UpdatedOn = DateTime.Now;
             _context.Income.Add(model);
             _context.SaveChanges();
         }
@@ -36,6 +38,7 @@ namespace ExpenseTrackerMVCApp.Repositories
             //ExpenseCategoryModel expenseCategory = GetExpenseCategoriesById(model.ExpenseCategoryID);
             //if (expenseCategory != null)
             //{
+            model.UpdatedOn = DateTime.Now;
             _context.Income.Update(model);
             _context.SaveChanges();
             //}
