@@ -21,25 +21,21 @@ namespace ExpenseTrackerMVCApp.Controllers
         // GET: TotalsController
         public ActionResult Index()
         {
-            var incomes = _incomeRepository.GetIncomes();
-            decimal sumI = incomes.Sum(x => x.Amount);
-            var expenses = _expensesRepository.GetExpenses();
-            decimal sumE = expenses.Sum(x => x.Amount);
-            TotalModel model = new TotalModel() { TotalExpenses = sumI, TotalIncome = sumE };
-            _totalsRepository.AddTotals(model);
-            return View("Index", model);
+            var totals = _totalsRepository.GetTotal();
+            return View("Index", totals);
         }
 
         // GET: TotalsController/Details/5
         public ActionResult Details(Guid id)
         {
-            return View();
+            TotalModel total = _totalsRepository.GetTotalById(id);
+            return View("Details", total);
         }
 
         // GET: TotalsController/Create
         public ActionResult Create()
         {
-            return View("Overview");
+            return View("Create");
         }
 
         // POST: TotalsController/Create
@@ -47,14 +43,13 @@ namespace ExpenseTrackerMVCApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var incomes = _incomeRepository.GetIncomes();
+            decimal sumI = incomes.Sum(x => x.Amount);
+            var expenses = _expensesRepository.GetExpenses();
+            decimal sumE = expenses.Sum(x => x.Amount);
+            TotalModel model = new TotalModel() { TotalExpenses = sumI, TotalIncome = sumE };
+            _totalsRepository.AddTotals(model);
+            return RedirectToAction("Index", model);
         }
 
         // GET: TotalsController/Edit/5
