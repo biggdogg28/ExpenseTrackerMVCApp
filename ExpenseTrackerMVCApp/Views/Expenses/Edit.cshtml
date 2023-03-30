@@ -15,7 +15,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="IdExpense" class="control-label"></label>
-                <input asp-for="IdExpense" class="form-control" reaonly/>
+                <input asp-for="IdExpense" class="form-control" reaonly hidden/>
                 <span asp-validation-for="IdExpense" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -42,12 +42,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="CreatedDate" class="control-label"></label>
-                <input asp-for="CreatedDate" class="form-control" />
+                <input asp-for="CreatedDate" class="form-control" readonly/>
                 <span asp-validation-for="CreatedDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="UpdatedOn" class="control-label"></label>
-                <input asp-for="UpdatedOn" class="form-control" />
+                <input asp-for="UpdatedOn" class="form-control" readonly/>
                 <span asp-validation-for="UpdatedOn" class="text-danger"></span>
             </div>
             <div class="form-group">
