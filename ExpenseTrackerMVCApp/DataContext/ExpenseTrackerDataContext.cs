@@ -7,11 +7,11 @@ namespace ExpenseTrackerMVCApp.DataContext
     {
         public ExpenseTrackerDataContext(DbContextOptions<ExpenseTrackerDataContext> options) : base(options) { }
 
-        public DbSet<ExpenseCategoryModel> ExpenseCategories { get; set; }
+        public DbSet<ExpenseCategoryModel> ExpenseCategory { get; set; }
         public DbSet<ExpenseModel> Expenses { get; set; }
         public DbSet<IncomeModel> Income { get; set; }
-        public DbSet<IncomeTypeModel> IncomeTypes { get; set; }
+        public DbSet<IncomeTypeModel> IncomeType { get; set; }
         public DbSet<LocationModel> Location { get; set; }
-        public DbSet<TotalModel> Total { get; set; }
+        public DbSet<TotalModel> Totals { get; set; }
     }
 }
