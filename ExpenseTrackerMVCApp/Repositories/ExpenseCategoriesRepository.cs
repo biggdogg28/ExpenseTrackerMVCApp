@@ -15,19 +15,19 @@ namespace ExpenseTrackerMVCApp.Repositories
 
         public DbSet<ExpenseCategoryModel> GetExpenseCategories()
         {
-            return _context.ExpenseCategories;
+            return _context.ExpenseCategory;
         }
 
         public ExpenseCategoryModel GetExpenseCategoriesById(Guid id)
         {
-            ExpenseCategoryModel expenseCategory = _context.ExpenseCategories.FirstOrDefault(x => x.ExpenseCategoryID == id);
+            ExpenseCategoryModel expenseCategory = _context.ExpenseCategory.FirstOrDefault(x => x.ExpenseCategoryID == id);
             return expenseCategory;
         }
 
         public void AddExpenseCategory(ExpenseCategoryModel model)
         {
             model.ExpenseCategoryID = Guid.NewGuid();
-            _context.ExpenseCategories.Add(model);
+            _context.ExpenseCategory.Add(model);
             _context.SaveChanges();
         }
 
@@ -36,7 +36,7 @@ namespace ExpenseTrackerMVCApp.Repositories
             //ExpenseCategoryModel expenseCategory = GetExpenseCategoriesById(model.ExpenseCategoryID);
             //if (expenseCategory != null)
             //{
-                _context.ExpenseCategories.Update(model);
+                _context.ExpenseCategory.Update(model);
                 _context.SaveChanges();
             //}
         }
