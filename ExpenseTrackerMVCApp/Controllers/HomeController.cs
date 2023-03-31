@@ -1,4 +1,5 @@
 ﻿using ExpenseTrackerMVCApp.Models;
+using ExpenseTrackerMVCApp.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,15 +8,18 @@ namespace ExpenseTrackerMVCApp.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly TotalsRepository _totalsRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, TotalsRepository totalsRepository)
         {
             _logger = logger;
+            _totalsRepository = totalsRepository;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var totals = _totalsRepository.GetTotal();
+            return View("Index", totals);
         }
 
         public IActionResult Privacy()

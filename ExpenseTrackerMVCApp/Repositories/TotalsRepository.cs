@@ -49,7 +49,7 @@ namespace ExpenseTrackerMVCApp.Repositories
             _context.SaveChanges();
         }
 
-        public void DeleteTotals(Guid id)
+        public void DeleteTotalsById(Guid id)
         {
             TotalModel total = GetTotalById(id);
             if (total != null)

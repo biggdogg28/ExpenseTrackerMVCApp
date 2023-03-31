@@ -11,7 +11,7 @@
     <form asp-action="Create">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
-            <input type="submit" value="Create Total Record" class="btn btn-primary" />
+            <input type="submit" value="Register Actual Totals" class="btn btn-primary" />
         </div>
     </form>
     @*<a asp-action="Create">Create New</a>*@
@@ -56,7 +56,7 @@
                 @Html.DisplayFor(modelItem => item.UpdatedOn)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.IdTotals }) |
+               @* @Html.ActionLink("Edit", "Edit", new { id=item.IdTotals }) |*@
                     @Html.ActionLink("Details", "Details", new { id=item.IdTotals }) |
                     @Html.ActionLink("Delete", "Delete", new { id=item.IdTotals })
             </td>

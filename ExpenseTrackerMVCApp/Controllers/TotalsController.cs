@@ -52,31 +52,32 @@ namespace ExpenseTrackerMVCApp.Controllers
             return RedirectToAction("Index", model);
         }
 
-        // GET: TotalsController/Edit/5
-        public ActionResult Edit(Guid id)
-        {
-            return View();
-        }
+        //// GET: TotalsController/Edit/5
+        //public ActionResult Edit(Guid id)
+        //{
+        //    return View();
+        //}
 
-        // POST: TotalsController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(Guid id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //// POST: TotalsController/Edit/5
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit(Guid id, IFormCollection collection)
+        //{
+        //    try
+        //    {
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
 
         // GET: TotalsController/Delete/5
         public ActionResult Delete(Guid id)
         {
-            return View();
+            TotalModel total = _totalsRepository.GetTotalById(id);
+            return View("Delete", total);
         }
 
         // POST: TotalsController/Delete/5
@@ -84,14 +85,8 @@ namespace ExpenseTrackerMVCApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(Guid id, IFormCollection collection)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            _totalsRepository.DeleteTotalsById(id);
+            return RedirectToAction("Index");
         }
     }
 }
