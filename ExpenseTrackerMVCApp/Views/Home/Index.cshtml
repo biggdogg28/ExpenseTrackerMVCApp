@@ -12,9 +12,9 @@
 </p>*@
 
 <div class="body d-sm-inline-flex justify-content-between">
-    <span>
+    <div>
         <button id="add-expense-home" class="body-toggler" type="button">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Expenses" asp-action="Index">Add Expenses</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Expenses" asp-action="Index">View Expenses</a>
         </button>
         <div id="expenses-table">
             <table class="table">
@@ -38,10 +38,10 @@
             </table>
         </div>
 
-    </span>
-    <span>
+    </div>
+    <div>
         <button id="add-income-home" class="body-toggler" type="button">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Income" asp-action="Index">Add Income</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Income" asp-action="Index">View Income</a>
         </button>
         <div id="income-table">
             <table class="table">
@@ -49,6 +49,9 @@
                     <tr>
                         <th>
                             @Html.DisplayNameFor(model => model.TotalIncome)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Balance)
                         </th>
                     </tr>
                 </thead>
@@ -59,12 +62,15 @@
                 <td>
                 @Html.DisplayFor(modelItem => item.TotalIncome)
                 </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Balance)
+                            </td>
                 </tr>
                 }
                 </tbody>
             </table>
         </div>
-    </span>
+    </div>
 </div>
 
 

@@ -10,5 +10,6 @@ namespace ExpenseTrackerMVCApp.Models
         public decimal TotalIncome { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedOn { get; set; }
+        public decimal Balance { get; set; }
     }
 }

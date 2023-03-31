@@ -34,6 +34,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.UpdatedOn)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Balance)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -55,6 +58,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.UpdatedOn)
             </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Balance)
+                </td>
             <td>
                @* @Html.ActionLink("Edit", "Edit", new { id=item.IdTotals }) |*@
                     @Html.ActionLink("Details", "Details", new { id=item.IdTotals }) |

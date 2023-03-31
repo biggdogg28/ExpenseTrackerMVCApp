@@ -47,7 +47,8 @@ namespace ExpenseTrackerMVCApp.Controllers
             decimal sumI = incomes.Sum(x => x.Amount);
             var expenses = _expensesRepository.GetExpenses();
             decimal sumE = expenses.Sum(x => x.Amount);
-            TotalModel model = new TotalModel() { TotalExpenses = sumI, TotalIncome = sumE };
+            var balance = sumI - sumE;
+            TotalModel model = new TotalModel() { TotalExpenses = sumE, TotalIncome = sumI, Balance = balance };
             _totalsRepository.AddTotals(model);
             return RedirectToAction("Index", model);
         }
