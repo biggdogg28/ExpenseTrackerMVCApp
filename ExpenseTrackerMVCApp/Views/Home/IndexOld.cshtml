@@ -1,0 +1,66 @@
+﻿@*@model IEnumerable<ExpenseTrackerMVCApp.Models.TotalModel>
+*@
+@*@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}*@
+
+@*<div class="text-center">
+    <h1 class="display-4">Expense Tracker v1.0</h1>
+</div>
+<div class="body d-sm-inline-flex justify-content-between">
+    <span>
+        <button id="add-expense-home" class="body-toggler" type="button">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Expenses" asp-action="Index">Add Expenses</a>
+        </button>
+        <div id="expenses-table">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TotalExpenses)
+                        </th>
+                    </tr>
+                </thead>
+                @*<tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TotalExpenses)
+                            </td>
+                        </tr>
+                    }
+                </tbody>*@
+            @*</table>
+        </div>
+
+    </span>
+    <span>
+        <button  id="add-income-home" class="body-toggler" type="button">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Income" asp-action="Index">Add Income</a>
+        </button>
+        <div id="income-table">
+    <table class="table">
+       <thead>
+           <tr>
+                <th>
+                            @Html.DisplayNameFor(model => model.TotalIncome)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                                @Html.DisplayFor(modelItem => item.TotalIncome)
+                        </td>
+                    </tr>
+                    }
+        </tbody>
+    </table>
+</div>
+    </span>
+ </div>*@
+ 
