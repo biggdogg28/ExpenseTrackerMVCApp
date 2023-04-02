@@ -8,10 +8,14 @@
 <h1>Expense Tracker v1.0</h1>
 
 <div class="body d-sm-inline-flex justify-content-between">
+    @if (User.Identity.IsAuthenticated)
+    {
     <div>
         <button id="add-expense-home" class="body-toggler" type="button">
             <a class="nav-link text-dark" asp-area="" asp-controller="Expenses" asp-action="Index">View Expenses</a>
         </button>
+        
+
         <div id="expenses-table">
             <table class="table">
                 <thead>
@@ -67,4 +71,11 @@
             </table>
         </div>
     </div>
+    }
+    else
+    {
+                        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                            <p>Please login to continue.</p>
+                        </div>
+    }
 </div>
