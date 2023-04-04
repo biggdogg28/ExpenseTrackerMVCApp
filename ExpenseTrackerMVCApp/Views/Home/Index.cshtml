@@ -6,13 +6,14 @@
 }
 
 <h1>Expense Tracker v1.0</h1>
+<img src="https://cdn-icons-png.flaticon.com/512/10209/10209220.png" width="50" height="60"></img>
 
 <div class="body d-sm-inline-flex justify-content-between">
     @if (User.Identity.IsAuthenticated)
     {
     <div>
         <button id="add-expense-home" class="body-toggler" type="button">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Expenses" asp-action="Index">View Expenses</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Expenses" asp-action="Index">View Expenses</a>
         </button>
         
 
