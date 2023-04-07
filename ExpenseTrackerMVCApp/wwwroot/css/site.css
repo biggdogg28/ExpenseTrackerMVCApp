@@ -49,10 +49,17 @@ body {
 #add-expense-home {
     border-radius: 5px;
     border: 3px solid #ff0000;
-    float: left
+    float: left;
 }
 #add-income-home {
     border-radius: 5px;
     border: 3px solid #0094ff;
-    float: right
+    float: right;
+}
+#chartContainer {
+    border: 1px solid #000000;
+    border-radius: 25px;
+    float: right;
+    height: 500px;
+    width: 500px;
 }

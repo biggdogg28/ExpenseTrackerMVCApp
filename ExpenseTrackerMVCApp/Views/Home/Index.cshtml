@@ -6,6 +6,43 @@
 
 }
 
+<head>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script type="text/javascript">
+
+        window.onload = function () {
+            var chart = new CanvasJS.Chart("chartContainer", {
+                theme: "light2",
+                animationEnabled: true,
+                title: {
+                    text: "Totals Chart View"
+                },
+                data: [
+                    {
+                        type: "pie", //change type to bar, line, area, pie, etc
+                        dataPoints: @Html.Raw(ViewBag.DataPoints)
+                        //[
+                        //    { x: 10, y: 71 },
+                        //    { x: 20, y: 55 },
+                        //    { x: 30, y: 50 },
+                        //    { x: 40, y: 65 },
+                        //    { x: 50, y: 95 },
+                        //    { x: 60, y: 68 },
+                        //    { x: 70, y: 28 },
+                        //    { x: 80, y: 34 },
+                        //    { x: 90, y: 14 }
+                        //]
+                        
+                    }
+                ]
+            });
+            chart.render();
+        };
+    </script>
+</head>
+
+
+
 <h1>Expense Tracker v1.0</h1>
 <img src="https://cdn-icons-png.flaticon.com/512/10209/10209220.png" width="50" height="60"></img>
 
@@ -86,6 +123,9 @@
                             <p>Please login to continue.</p>
                         </div>
     }
+</div>
+<div id="chartContainer">
+
 </div>
 <div class="float-right">
     <img src="https://previews.123rf.com/images/olgacov/olgacov1202/olgacov120200021/12485192-unbalanced-silver-scale-with-money-coines-and-banknotes-isolated-on-white-background.jpg" width="225" height="165"></img>
