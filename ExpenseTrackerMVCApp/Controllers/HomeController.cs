@@ -32,10 +32,5 @@ namespace ExpenseTrackerMVCApp.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
-        public ActionResult ChartView()
-        {
-            return View();
-        }
     }
 }

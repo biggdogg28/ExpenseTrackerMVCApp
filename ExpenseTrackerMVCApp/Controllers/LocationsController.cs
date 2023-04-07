@@ -2,15 +2,18 @@
 using ExpenseTrackerMVCApp.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NuGet.Protocol.Core.Types;
 
 namespace ExpenseTrackerMVCApp.Controllers
 {
     public class LocationsController : Controller
     {
         private readonly LocationsRepository _locationsRepository;
-        public LocationsController(LocationsRepository locationsRepository)
+        private readonly ExpensesRepository _expenseRepository;
+        public LocationsController(LocationsRepository locationsRepository, ExpensesRepository expenseRepository)
         {
             _locationsRepository = locationsRepository;
+            _expenseRepository = expenseRepository;
         }
         // GET: LocationsController
         public ActionResult Index()
@@ -65,8 +68,15 @@ namespace ExpenseTrackerMVCApp.Controllers
         // GET: LocationsController/Delete/5
         public ActionResult Delete(Guid id)
         {
-            LocationModel location = _locationsRepository.GetLocationById(id);
-            return View("Delete", location);
+            if (_expenseRepository.GetExpenses().Any(x => x.IdLocation == _locationsRepository.GetLocationById(id).IdLocation))
+            {
+                return RedirectToAction("Error");
+            }
+            else
+            {
+                LocationModel location = _locationsRepository.GetLocationById(id);
+                return View("Delete", location);
+            }
         }
 
         // POST: LocationsController/Delete/5
@@ -76,6 +86,10 @@ namespace ExpenseTrackerMVCApp.Controllers
         {
             _locationsRepository.DeleteLocationById(id);
             return RedirectToAction("Index");
+        }
+        public ActionResult Error(string message)
+        {
+            return View("Error", message);
         }
     }
 }

@@ -8,9 +8,11 @@ namespace ExpenseTrackerMVCApp.Controllers
     public class IncomeTypesController : Controller
     {
         private readonly IncomeTypesRepository _repository;
-        public IncomeTypesController(IncomeTypesRepository repository)
+        private readonly IncomeRepository _incomeRepository;
+        public IncomeTypesController(IncomeTypesRepository repository, IncomeRepository incomeRepository)
         {
             _repository = repository;
+            _incomeRepository = incomeRepository;
         }
 
         // GET: IncomeTypesController
@@ -67,8 +69,15 @@ namespace ExpenseTrackerMVCApp.Controllers
         // GET: IncomeTypesController/Delete/5
         public ActionResult Delete(Guid id)
         {
-            IncomeTypeModel incomeType = _repository.GetIncomeTypeById(id);
-            return View("Delete", incomeType);
+            if (_incomeRepository.GetIncomes().Any(x => x.IncomeTypeID == _repository.GetIncomeTypeById(id).IncomeTypeID))
+            {
+                return RedirectToAction("Error");
+            }
+            else
+            {
+                IncomeTypeModel incomeType = _repository.GetIncomeTypeById(id);
+                return View("Delete", incomeType);
+            }
         }
 
         // POST: IncomeTypesController/Delete/5
@@ -78,6 +87,10 @@ namespace ExpenseTrackerMVCApp.Controllers
         {
             _repository.DeleteIncomeTypeById(id);
             return RedirectToAction("Index");
+        }
+        public ActionResult Error(string message)
+        {
+            return View("Error", message);
         }
     }
 }

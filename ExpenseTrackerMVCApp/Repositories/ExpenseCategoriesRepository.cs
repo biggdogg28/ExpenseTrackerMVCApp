@@ -1,5 +1,7 @@
-﻿using ExpenseTrackerMVCApp.DataContext;
+﻿using Azure;
+using ExpenseTrackerMVCApp.DataContext;
 using ExpenseTrackerMVCApp.Models;
+using Microsoft.CodeAnalysis.Scripting;
 using Microsoft.EntityFrameworkCore;
 
 namespace ExpenseTrackerMVCApp.Repositories
@@ -40,7 +42,7 @@ namespace ExpenseTrackerMVCApp.Repositories
                 _context.SaveChanges();
             //}
         }
-
+        
         public void DeleteExpenseCategoryById(Guid id)
         {
             ExpenseCategoryModel expenseCategory = GetExpenseCategoriesById(id);
@@ -49,7 +51,6 @@ namespace ExpenseTrackerMVCApp.Repositories
                 _context.Remove(expenseCategory);
                 _context.SaveChanges();
             }
-            
         }
 
     }

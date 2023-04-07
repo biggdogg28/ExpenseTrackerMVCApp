@@ -3,15 +3,18 @@ using ExpenseTrackerMVCApp.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Connections;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace ExpenseTrackerMVCApp.Controllers
 {
     public class ExpenseCategoriesController : Controller
     {
         private readonly ExpenseCategoriesRepository _repository;
-        public ExpenseCategoriesController(ExpenseCategoriesRepository repository)
+        private readonly ExpensesRepository _expenseRepository;
+        public ExpenseCategoriesController(ExpenseCategoriesRepository repository, ExpensesRepository expensesRepository)
         {
             _repository = repository;
+            _expenseRepository = expensesRepository;
         }
 
         // GET: ExpenseCategoriesController
@@ -68,8 +71,16 @@ namespace ExpenseTrackerMVCApp.Controllers
         // GET: ExpenseCategoriesController/Delete/5
         public ActionResult Delete(Guid id)
         {
-            ExpenseCategoryModel expenseCategory = _repository.GetExpenseCategoriesById(id);
-            return View("Delete", expenseCategory);
+            if (_expenseRepository.GetExpenses().Any(x => x.ExpenseCategoryID == _repository.GetExpenseCategoriesById(id).ExpenseCategoryID)) 
+            {
+                return RedirectToAction("Error");
+            }
+            else
+            {
+                ExpenseCategoryModel expenseCategory = _repository.GetExpenseCategoriesById(id);
+                return View("Delete", expenseCategory);
+            }
+            
         }
 
         // POST: ExpenseCategoriesController/Delete/5
@@ -79,6 +90,11 @@ namespace ExpenseTrackerMVCApp.Controllers
         {
             _repository.DeleteExpenseCategoryById(id);
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Error(string message)
+        {
+            return View("Error", message);
         }
     }
 }
