@@ -60,14 +60,14 @@ namespace ExpenseTrackerTest.RepositoriesTests
                 Balance = 100,
             };
 
-            TotalModel total = Helpers.DBContextHelpers.AddTotals(_contextInMemory, total1);
+            TotalModel total = Helpers.DBContextHelpers.AddTotal(_contextInMemory, total1);
             List<TotalModel> list = new List<TotalModel>();
             list.Add(total1);
             list.Add(total2);
             list.Add(total3);
-            Helpers.DBContextHelpers.AddTotals(_contextInMemory, total1);
-            Helpers.DBContextHelpers.AddTotals(_contextInMemory, total2);
-            Helpers.DBContextHelpers.AddTotals(_contextInMemory, total3);
+            Helpers.DBContextHelpers.AddTotal(_contextInMemory, total1);
+            Helpers.DBContextHelpers.AddTotal(_contextInMemory, total2);
+            Helpers.DBContextHelpers.AddTotal(_contextInMemory, total3);
 
 
             //Act
@@ -117,8 +117,8 @@ namespace ExpenseTrackerTest.RepositoriesTests
             List<TotalModel> dbTotals = _repository.GetTotal().ToList();
 
             //Assert
-            //Expected to fail since there cannot be 2 Totals with the same ID
-            Assert.AreEqual(list.Count, dbTotals.Count);
+            
+            Assert.AreEqual(1, dbTotals.Count);
         }
 
         [TestMethod]
@@ -145,7 +145,7 @@ namespace ExpenseTrackerTest.RepositoriesTests
                 Balance = 100,
             };
 
-            TotalModel total = Helpers.DBContextHelpers.AddTotals(_contextInMemory, total1);
+            TotalModel total = Helpers.DBContextHelpers.AddTotal(_contextInMemory, total1);
 
             Guid id = (Guid)total1.IdTotals;
 
@@ -208,7 +208,7 @@ namespace ExpenseTrackerTest.RepositoriesTests
                 TotalIncome = 600,
                 Balance = 100,
             };
-            TotalModel Total = Helpers.DBContextHelpers.AddTotals(_contextInMemory, total1);
+            TotalModel Total = Helpers.DBContextHelpers.AddTotal(_contextInMemory, total1);
 
             //Act
             _repository.DeleteTotalsById(id);

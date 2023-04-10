@@ -68,9 +68,9 @@ namespace ExpenseTrackerTest.RepositoriesTests
             list.Add(income1);
             list.Add(income2);
             list.Add(income3);
-            Helpers.DBContextHelpers.AddIncome(_contextInMemory, income1);
-            Helpers.DBContextHelpers.AddIncome(_contextInMemory, income2);
-            Helpers.DBContextHelpers.AddIncome(_contextInMemory, income3);
+            DBContextHelpers.AddIncome(_contextInMemory, income1);
+            DBContextHelpers.AddIncome(_contextInMemory, income2);
+            DBContextHelpers.AddIncome(_contextInMemory, income3);
 
 
             //Act
@@ -113,16 +113,16 @@ namespace ExpenseTrackerTest.RepositoriesTests
             list.Add(income1);
             list.Add(income2);
 
-            Helpers.DBContextHelpers.AddIncome(_contextInMemory, income1);
-            Helpers.DBContextHelpers.AddIncome(_contextInMemory, income2);
+            DBContextHelpers.AddIncome(_contextInMemory, income1);
+            DBContextHelpers.AddIncome(_contextInMemory, income2);
 
 
             //Act
             List<IncomeModel> dbIncome = _repository.GetIncomes().ToList();
 
             //Assert
-            //Expected to fail since there cannot be 2 Income with the same ID
-            Assert.AreEqual(list.Count, dbIncome.Count);
+            
+            Assert.AreEqual(1, dbIncome.Count);
         }
 
         [TestMethod]
@@ -149,7 +149,7 @@ namespace ExpenseTrackerTest.RepositoriesTests
                 IncomeTypeID = Guid.NewGuid(),
                 Amount = 500,
             };
-            IncomeModel Income = Helpers.DBContextHelpers.AddIncome(_contextInMemory, income1);
+            IncomeModel Income = DBContextHelpers.AddIncome(_contextInMemory, income1);
 
             Guid id = (Guid)income1.IdIncome;
 
@@ -214,7 +214,7 @@ namespace ExpenseTrackerTest.RepositoriesTests
                 IncomeTypeID = Guid.NewGuid(),
                 Amount = 500,
             };
-            IncomeModel Income = Helpers.DBContextHelpers.AddIncome(_contextInMemory, Income1);
+            IncomeModel Income = DBContextHelpers.AddIncome(_contextInMemory, Income1);
 
             //Act
             _repository.DeleteIncomeById(id);
@@ -237,7 +237,7 @@ namespace ExpenseTrackerTest.RepositoriesTests
                 IncomeTypeID = Guid.NewGuid(),
                 Amount = 500,
             };
-            IncomeModel income = Helpers.DBContextHelpers.AddIncome(_contextInMemory, income1);
+            IncomeModel income = DBContextHelpers.AddIncome(_contextInMemory, income1);
             income.Notes = "noteUpdate";
             _repository.UpdateIncome(income);
 

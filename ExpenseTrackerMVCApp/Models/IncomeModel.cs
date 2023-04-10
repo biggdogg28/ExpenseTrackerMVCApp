@@ -10,6 +10,7 @@ namespace ExpenseTrackerMVCApp.Models
         public Guid IdIncome { get; set; }
         public string? Name { get; set; }
         [Column(TypeName = "decimal(18,2)")]
+        [Required(ErrorMessage = "This field is mandatory.")]
         public decimal Amount { get; set; }
         public Guid IncomeTypeID { get; set; }
         public string? Notes { get; set; }

@@ -51,9 +51,9 @@ namespace ExpenseTrackerTest.RepositoriesTests
             list.Add(IncomeType1);
             list.Add(IncomeType2);
             list.Add(IncomeType3);
-            Helpers.DBContextHelpers.AddIncomeType(_contextInMemory, IncomeType1);
-            Helpers.DBContextHelpers.AddIncomeType(_contextInMemory, IncomeType2);
-            Helpers.DBContextHelpers.AddIncomeType(_contextInMemory, IncomeType3);
+            DBContextHelpers.AddIncomeType(_contextInMemory, IncomeType1);
+            DBContextHelpers.AddIncomeType(_contextInMemory, IncomeType2);
+            DBContextHelpers.AddIncomeType(_contextInMemory, IncomeType3);
 
 
             //Act
@@ -86,8 +86,8 @@ namespace ExpenseTrackerTest.RepositoriesTests
             list.Add(IncomeType1);
             list.Add(IncomeType2);
 
-            Helpers.DBContextHelpers.AddIncomeType(_contextInMemory, IncomeType1);
-            Helpers.DBContextHelpers.AddIncomeType(_contextInMemory, IncomeType2);
+            DBContextHelpers.AddIncomeType(_contextInMemory, IncomeType1);
+            DBContextHelpers.AddIncomeType(_contextInMemory, IncomeType2);
 
 
 
@@ -95,8 +95,8 @@ namespace ExpenseTrackerTest.RepositoriesTests
             List<IncomeTypeModel> dbIncomeType = _repository.GetIncomeTypes().ToList();
 
             //Assert
-            //Expected to fail since there cannot be 2 IncomeType with the same ID
-            Assert.AreEqual(list.Count, dbIncomeType.Count);
+            
+            Assert.AreEqual(1, dbIncomeType.Count);
         }
 
         [TestMethod]
@@ -118,7 +118,7 @@ namespace ExpenseTrackerTest.RepositoriesTests
                 IncomeTypeID = Guid.NewGuid(),
                 Name = "Test",
             };
-            IncomeTypeModel IncomeType = Helpers.DBContextHelpers.AddIncomeType(_contextInMemory, IncomeType1);
+            IncomeTypeModel IncomeType = DBContextHelpers.AddIncomeType(_contextInMemory, IncomeType1);
 
             Guid id = (Guid)IncomeType1.IncomeTypeID;
 
@@ -173,7 +173,7 @@ namespace ExpenseTrackerTest.RepositoriesTests
                 IncomeTypeID = Guid.NewGuid(),
                 Name = "Test",
             };
-            IncomeTypeModel IncomeType = Helpers.DBContextHelpers.AddIncomeType(_contextInMemory, IncomeType1);
+            IncomeTypeModel IncomeType = DBContextHelpers.AddIncomeType(_contextInMemory, IncomeType1);
 
             //Act
             _repository.DeleteIncomeTypeById(id);
@@ -191,7 +191,7 @@ namespace ExpenseTrackerTest.RepositoriesTests
                 IncomeTypeID = Guid.NewGuid(),
                 Name = "Test",
             };
-            IncomeTypeModel IncomeType = Helpers.DBContextHelpers.AddIncomeType(_contextInMemory, IncomeType1);
+            IncomeTypeModel IncomeType = DBContextHelpers.AddIncomeType(_contextInMemory, IncomeType1);
             IncomeType.Name = "NameUpdated";
             _repository.UpdateIncomeType(IncomeType);
 

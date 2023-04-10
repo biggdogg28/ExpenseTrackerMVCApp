@@ -37,14 +37,14 @@ namespace ExpenseTrackerTest.Helpers
             context.Entry(expenseCategory).State = EntityState.Detached;
             return expenseCategory;
         }
-        public static TotalModel AddExpenseCategory(ExpenseTrackerDataContext context, TotalModel total)
+        public static TotalModel AddTotal(ExpenseTrackerDataContext context, TotalModel total)
         {
             context.Add(total);
             context.SaveChangesAsync();
             context.Entry(total).State = EntityState.Detached;
             return total;
         }
-        public static IncomeModel AddExpenseCategory(ExpenseTrackerDataContext context, IncomeModel income)
+        public static IncomeModel AddIncome(ExpenseTrackerDataContext context, IncomeModel income)
         {
             context.Add(income);
             context.SaveChangesAsync();
@@ -52,7 +52,7 @@ namespace ExpenseTrackerTest.Helpers
             return income;
         }
 
-        public static IncomeTypeModel AddExpenseCategory(ExpenseTrackerDataContext context, IncomeTypeModel incomeType)
+        public static IncomeTypeModel AddIncomeType(ExpenseTrackerDataContext context, IncomeTypeModel incomeType)
         {
             context.Add(incomeType);
             context.SaveChangesAsync();
@@ -60,7 +60,7 @@ namespace ExpenseTrackerTest.Helpers
             return incomeType;
         }
 
-        public static LocationModel AddExpenseCategory(ExpenseTrackerDataContext context, LocationModel location)
+        public static LocationModel AddLocation(ExpenseTrackerDataContext context, LocationModel location)
         {
             context.Add(location);
             context.SaveChangesAsync();

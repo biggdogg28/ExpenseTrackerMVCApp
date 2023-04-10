@@ -97,8 +97,8 @@ namespace ExpenseTrackerTest.RepositoriesTests
             List<ExpenseCategoryModel> dbExpenseCategories = _repository.GetExpenseCategories().ToList();
 
             //Assert
-            //Expected to fail since there cannot be 2 ExpenseCategories with the same ID
-            Assert.AreEqual(list.Count, dbExpenseCategories.Count);
+            
+            Assert.AreEqual(1, dbExpenseCategories.Count);
         }
 
         [TestMethod]

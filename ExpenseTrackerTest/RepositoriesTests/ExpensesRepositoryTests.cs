@@ -123,8 +123,8 @@ namespace ExpenseTrackerTest.RepositoriesTests
             List<ExpenseModel> dbExpenses = _repository.GetExpenses().ToList();
 
             //Assert
-            //Expected to fail since there cannot be 2 Expenses with the same ID
-            Assert.AreEqual(list.Count, dbExpenses.Count);
+            
+            Assert.AreEqual(1, dbExpenses.Count);
         }
 
         [TestMethod]

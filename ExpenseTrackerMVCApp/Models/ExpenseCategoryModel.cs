@@ -6,6 +6,7 @@ namespace ExpenseTrackerMVCApp.Models
     {
         [Key]
         public Guid ExpenseCategoryID { get; set; }
+        [Required(ErrorMessage = "This field is mandatory.")]
         public string? Name { get; set; }
     }
 }

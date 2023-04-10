@@ -28,19 +28,19 @@ namespace ExpenseTrackerTest.RepositoriesTests
             //Arrange
             //Guid id = Guid.NewGuid();
 
-            LocationModel Location1 = new LocationModel()
+            LocationModel location1 = new LocationModel()
             {
                 IdLocation = Guid.NewGuid(),
                 Name = "Test",
             };
 
-            LocationModel Location2 = new LocationModel()
+            LocationModel location2 = new LocationModel()
             {
                 IdLocation = Guid.NewGuid(),
                 Name = "Test",
             };
 
-            LocationModel Location3 = new LocationModel()
+            LocationModel location3 = new LocationModel()
             {
                 IdLocation = Guid.NewGuid(),
                 Name = "Test",
@@ -48,12 +48,12 @@ namespace ExpenseTrackerTest.RepositoriesTests
 
             //ExpenseModel expense = Helpers.DBContextHelpers.AddExpense(_contextInMemory, expense1);
             List<LocationModel> list = new List<LocationModel>();
-            list.Add(Location1);
-            list.Add(Location2);
-            list.Add(Location3);
-            Helpers.DBContextHelpers.AddLocation(_contextInMemory, Location1);
-            Helpers.DBContextHelpers.AddLocation(_contextInMemory, Location2);
-            Helpers.DBContextHelpers.AddLocation(_contextInMemory, Location3);
+            list.Add(location1);
+            list.Add(location2);
+            list.Add(location3);
+            DBContextHelpers.AddLocation(_contextInMemory, location1);
+            DBContextHelpers.AddLocation(_contextInMemory, location2);
+            DBContextHelpers.AddLocation(_contextInMemory, location3);
 
 
             //Act
@@ -69,13 +69,13 @@ namespace ExpenseTrackerTest.RepositoriesTests
             //Arrange
             Guid id = Guid.NewGuid();
 
-            LocationModel Location1 = new LocationModel()
+            LocationModel location1 = new LocationModel()
             {
                 IdLocation = id,
                 Name = "Test",
             };
 
-            LocationModel Location2 = new LocationModel()
+            LocationModel location2 = new LocationModel()
             {
                 IdLocation = id,
                 Name = "Test",
@@ -83,11 +83,11 @@ namespace ExpenseTrackerTest.RepositoriesTests
 
             //ExpenseModel expense = Helpers.DBContextHelpers.AddExpense(_contextInMemory, expense1);
             List<LocationModel> list = new List<LocationModel>();
-            list.Add(Location1);
-            list.Add(Location2);
+            list.Add(location1);
+            list.Add(location2);
 
-            Helpers.DBContextHelpers.AddLocation(_contextInMemory, Location1);
-            Helpers.DBContextHelpers.AddLocation(_contextInMemory, Location2);
+            DBContextHelpers.AddLocation(_contextInMemory, location1);
+            DBContextHelpers.AddLocation(_contextInMemory, location2);
 
 
 
@@ -95,8 +95,8 @@ namespace ExpenseTrackerTest.RepositoriesTests
             List<LocationModel> dbLocation = _repository.GetLocations().ToList();
 
             //Assert
-            //Expected to fail since there cannot be 2 Location with the same ID
-            Assert.AreEqual(list.Count, dbLocation.Count);
+            
+            Assert.AreEqual(1, dbLocation.Count);
         }
 
         [TestMethod]
@@ -113,22 +113,22 @@ namespace ExpenseTrackerTest.RepositoriesTests
         public void GetLocationCategoriesById()
         {
             //Arrange
-            LocationModel Location1 = new LocationModel()
+            LocationModel location1 = new LocationModel()
             {
                 IdLocation = Guid.NewGuid(),
                 Name = "Test",
             };
-            LocationModel Location = Helpers.DBContextHelpers.AddLocation(_contextInMemory, Location1);
+            LocationModel location = DBContextHelpers.AddLocation(_contextInMemory, location1);
 
-            Guid id = (Guid)Location1.IdLocation;
+            Guid id = (Guid)location1.IdLocation;
 
             //Act
             var result = _repository.GetLocationById(id);
 
             //Assert
             Assert.IsNotNull(result);
-            Assert.AreEqual(Location1.IdLocation, result.IdLocation);
-            Assert.AreEqual(Location1.Name, result.Name);
+            Assert.AreEqual(location1.IdLocation, result.IdLocation);
+            Assert.AreEqual(location1.Name, result.Name);
         }
 
         [TestMethod]
@@ -168,12 +168,12 @@ namespace ExpenseTrackerTest.RepositoriesTests
             //Assert
             Guid id = Guid.NewGuid();
 
-            LocationModel Location1 = new LocationModel()
+            LocationModel location1 = new LocationModel()
             {
                 IdLocation = Guid.NewGuid(),
                 Name = "Test",
             };
-            LocationModel Location = Helpers.DBContextHelpers.AddLocation(_contextInMemory, Location1);
+            LocationModel Location = DBContextHelpers.AddLocation(_contextInMemory, location1);
 
             //Act
             _repository.DeleteLocationById(id);
@@ -186,32 +186,32 @@ namespace ExpenseTrackerTest.RepositoriesTests
         [TestMethod]
         public void UpdateLocation_LocationExist()
         {
-            LocationModel Location1 = new LocationModel()
+            LocationModel location1 = new LocationModel()
             {
                 IdLocation = Guid.NewGuid(),
                 Name = "Test",
             };
-            LocationModel Location = Helpers.DBContextHelpers.AddLocation(_contextInMemory, Location1);
-            Location.Name = "NameUpdated";
-            _repository.UpdateLocation(Location);
+            LocationModel location = DBContextHelpers.AddLocation(_contextInMemory, location1);
+            location.Name = "NameUpdated";
+            _repository.UpdateLocation(location);
 
-            LocationModel updatedModel = _repository.GetLocationById((Guid)Location1.LocationID);
+            LocationModel updatedModel = _repository.GetLocationById((Guid)location1.IdLocation);
 
             Assert.IsNotNull(updatedModel);
-            Assert.AreEqual(Location.Name, updatedModel.Name);
+            Assert.AreEqual(location.Name, updatedModel.Name);
         }
 
         public void UpdateLocation_LocationNotExists()
         {
-            LocationModel Location1 = new LocationModel()
+            LocationModel location1 = new LocationModel()
             {
                 IdLocation = Guid.NewGuid(),
                 Name = "Test",
             };
 
-            _repository.UpdateLocation(Location1);
+            _repository.UpdateLocation(location1);
 
-            LocationModel updatedModel = _repository.GetLocationById((Guid)Location1.LocationID);
+            LocationModel updatedModel = _repository.GetLocationById((Guid)location1.IdLocation);
 
             Assert.IsNull(updatedModel);
         }
